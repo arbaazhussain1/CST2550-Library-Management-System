@@ -5,6 +5,11 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include "Member.h"
+
+
+
 
 class Librarian{
 private:
@@ -32,6 +37,7 @@ public:
     void calcFine(int memberID);
 };
 
+std::vector<Member> Memberlist;
 
 
 #endif //LIBRARY_MANAGEMENT_SYSTEM_LIBRARIAN_H

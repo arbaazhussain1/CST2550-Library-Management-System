@@ -1,5 +1,7 @@
 #include "Book.h"
-#include "Member.h"  // Include the header file for the Member class
+#include "Member.h"
+#include "Librarian.h"
+
 
 // Constructor
 Book::Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName)

@@ -1,3 +1,4 @@
+#include "Person.h"
 #include "Member.h"
 
 // Constructor

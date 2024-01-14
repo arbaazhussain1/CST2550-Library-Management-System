@@ -3,11 +3,8 @@
 
 #include <string>
 #include <vector>
+#include "Book.h"
 
-// Assuming you have a Book class defined
-class Book {
-    // Your Book class definition goes here
-};
 
 class Member {
 private:

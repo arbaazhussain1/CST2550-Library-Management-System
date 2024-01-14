@@ -54,7 +54,18 @@ void Librarian::addMember() {
     Memberlist.push_back(inputMember);
     newMemberID ++;
     std::cout << "New Member Added to the System." << std::endl;
+
+    // Display the details of the newly added member
+    displayMemberDetails(inputMember);
 }
+
+void Librarian::displayMemberDetails(const Member& member) {
+    std::cout << "Member ID: " << member.getMemberID() << std::endl;
+    std::cout << "Name: " << member.getName() << std::endl;
+    std::cout << "Address: " << member.getAddress() << std::endl;
+    std::cout << "Email: " << member.getEmail() << std::endl;
+}
+
 
 void Librarian::issueBook(int memberID, int bookID) {
     // Placeholder implementation

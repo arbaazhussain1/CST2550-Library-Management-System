@@ -63,21 +63,23 @@ int main() {
     if (option == 'y' || option == 'Y') {
 
     }
+
     std::string EnterFile;
-    std::cout << "Please enter the file that contains the book data: \n";
-    std::cin >> EnterFile;
+    bool fileOpened = false;
 
-    // Open the inputted file
-    std::ifstream inputFile(EnterFile);
+    while (!fileOpened) {
+        std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
+        std::cin >> EnterFile;
 
-    // Check to see if the file can be opened
-    if (inputFile.is_open()) {
-        std::cout << "The file " << EnterFile << " can be read.\n";
+        std::ifstream inputFile(EnterFile);
 
-        readFileData(EnterFile);
-
-    } else {
-        std::cout << "The File " << EnterFile << " cannot be read.\n";
+        if (inputFile.is_open()) {
+            std::cout << "The File " << EnterFile << " is able to read.\n";
+            readFileData(EnterFile);
+            fileOpened = true;
+        } else {
+            std::cout << "The File " << EnterFile << "  is unable to read: Please Try Again.\n";
+        }
     }
 
     // Main menu

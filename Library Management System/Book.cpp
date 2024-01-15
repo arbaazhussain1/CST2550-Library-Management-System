@@ -3,7 +3,6 @@
 #include "Librarian.h"
 
 
-
 // Constructor
 Book::Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName)
         : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName), dueDate(0), borrower(nullptr) {}

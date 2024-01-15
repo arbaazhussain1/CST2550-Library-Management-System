@@ -31,11 +31,12 @@ public:
 
     // Other member functions
     void addMember();
-    void displayMemberDetails(const Member& member);
     void issueBook(int memberID, int bookID);
     void returnBook(int memberID, int bookID);
     void displayBorrowedBooks(int memberID);
     void calcFine(int memberID);
+
+    void displayMemberDetails(const Member &member);
 };
 
 std::vector<Member> Memberlist;

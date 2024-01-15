@@ -1,8 +1,11 @@
 #include "Person.h"
 #include "Librarian.h"
 #include "Member.h"
+#include <fstream>
+#include <sstream>
+#include <string>
 
-int newMemberID = 001;
+int newMemberID = 1;
 // Default constructor
 Librarian::Librarian() {
 }
@@ -44,28 +47,28 @@ void Librarian::addMember() {
     std::cout << "Enter Member's Address: ";
     std::cin >> newAddress;
 
-    std::cout << "Enter Member's Email: ";
+    std::cout << "Enter Member's Email:";
     std::cin >> newEmail;
 
-    std::cout << "Adding New Member to the System..." << std::endl;
+    std::cout << "Adding New Member to the System...\n" << std::endl;
     // Create a new member and add it to the system
     class Member inputMember (newMemberID, newName, newAddress, newEmail);
 
     Memberlist.push_back(inputMember);
     newMemberID ++;
-    std::cout << "New Member Added to the System." << std::endl;
+    std::cout << "New Member Added to the System.\n" << std::endl;
 
     // Display the details of the newly added member
     displayMemberDetails(inputMember);
 }
 
 void Librarian::displayMemberDetails(const Member& member) {
+    std::cout << "Member Details:\n";
     std::cout << "Member ID: " << member.getMemberID() << std::endl;
     std::cout << "Name: " << member.getName() << std::endl;
     std::cout << "Address: " << member.getAddress() << std::endl;
     std::cout << "Email: " << member.getEmail() << std::endl;
 }
-
 
 void Librarian::issueBook(int memberID, int bookID) {
     // Placeholder implementation

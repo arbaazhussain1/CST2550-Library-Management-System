@@ -19,7 +19,6 @@ private:
 
 public:
 //    // Constructors
-//    Librarian(); // The Default Constructor
     Librarian(int staffID, int salary, const std::string name, const std::string address, const std::string email);
 
     // Accessor methods

@@ -17,7 +17,7 @@ private:
     Member* borrower;     // Pointer to Member object
 
 public:
-    Book(int bookID, const std::string bookName, const std::string authorFirstName, const std::string authorLastName);
+    Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName);
 
     // Accessor methods
     int getBookID() const;

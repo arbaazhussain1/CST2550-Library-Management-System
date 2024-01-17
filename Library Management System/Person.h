@@ -10,9 +10,6 @@ protected:
     std::string email;
 
 public:
-    // Constructors
-//    Person(); // The Default Constructor
-//    Person(const std::string& name, const std::string& address, const std::string& email );
 
     // Accessor methods
     std::string getName() const;

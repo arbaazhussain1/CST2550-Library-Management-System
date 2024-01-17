@@ -126,7 +126,7 @@ int main() {
 
         switch (choice) {
             case 1:
-                librarianInstance.addMember();
+                Arbaaz.addMember();
                 break;
             case 2:
                 // Validate input for memberID and bookID
@@ -145,7 +145,7 @@ int main() {
                     std::cin >> bookID;
                 }
 
-                librarianInstance.issueBook(memberID, bookID);
+                Arbaaz.issueBook(memberID, bookID);
                 break;
             case 3:
                 // Validate input for memberID and bookID
@@ -164,7 +164,7 @@ int main() {
                     std::cin >> bookID;
                 }
 
-                librarianInstance.returnBook(memberID, bookID);
+                Arbaaz.returnBook(memberID, bookID);
                 break;
             case 4:
                 // Validate input for memberID
@@ -179,7 +179,7 @@ int main() {
                     std::cin >> memberID;
                 }
 
-                librarianInstance.displayBorrowedBooks(memberID);
+                Arbaaz.displayBorrowedBooks(memberID);
                 break;
             case 5:
 //                librarianInstance.exitAndCloseProgram();

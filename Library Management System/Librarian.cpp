@@ -1,8 +1,6 @@
-#include "Person.h"
 #include "Person.cpp"
 #include "Librarian.h"
 #include "Member.h"
-#include <fstream>
 #include <sstream>
 #include <string>
 #include <regex>
@@ -20,13 +18,13 @@ Librarian::Librarian(int staffID, int salary, const std::string name, const std:
 
 Librarian Arbaaz(1000, 1000, "Arbaaz", "MDX University", "AH2010@live.mdx.ac.uk");
 
-void printInfo()  {
+void Librarian::printInfo()  {
     std::cout << "Librarian Information:" << std::endl;
-    std::cout << "StaffID: " << Arbaaz.getStaffID() << std::endl;
-    std::cout << "Salary: " << Arbaaz.getSalary() << std::endl;
-    std::cout << "Name: " << Arbaaz.getName() << std::endl;
-    std::cout << "Address: " << Arbaaz.getAddress() << std::endl;
-    std::cout << "Email: " << Arbaaz.getEmail() << std::endl;
+    std::cout << "StaffID: " << getStaffID() << std::endl;
+    std::cout << "Salary: " << getSalary() << std::endl;
+    std::cout << "Name: " << getName() << std::endl;
+    std::cout << "Address: " << getAddress() << std::endl;
+    std::cout << "Email: " << getEmail() << std::endl;
 }
 
 // Accessor methods

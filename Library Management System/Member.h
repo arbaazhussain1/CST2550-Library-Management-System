@@ -2,11 +2,12 @@
 #define LIBRARY_MANAGEMENT_SYSTEM_MEMBER_H
 
 #include <string>
+#include "Person.h"
 #include <vector>
 #include "Book.h"
 
 
-class Member {
+class Member: public Person {
 private:
     int memberID;
     std::string name;
@@ -15,7 +16,7 @@ private:
     std::vector<Book> booksLoaned;
 
 public:
-    Member(int memberID, const std::string& name, const std::string& address, const std::string& email);
+//    Member(int memberID, const std::string& name, const std::string& address, const std::string& email);
 
     // Accessor methods
     int getMemberID() const;
@@ -26,9 +27,9 @@ public:
 
     // Mutator methods
     void setMemberID(int newMemberID);
-    void setName(const std::string& newName);
-    void setAddress(const std::string& newAddress);
-    void setEmail(const std::string& newEmail);
+    void setName(const std::string newName);
+    void setAddress(const std::string newAddress);
+    void setEmail(const std::string newEmail);
     void setBooksBorrowed(const Book& book);
 };
 

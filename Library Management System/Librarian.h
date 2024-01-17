@@ -7,19 +7,20 @@
 #include <iostream>
 #include <vector>
 #include "Member.h"
+#include "Person.h"
 
 
 
 
-class Librarian{
+class Librarian: public Person{
 private:
       int staffID;
       int salary;
 
 public:
-    // Constructors
-    Librarian(); // The Default Constructor
-    Librarian(int staffID, int salary, const std::string& name, const std::string& address, const std::string& email);
+//    // Constructors
+//    Librarian(); // The Default Constructor
+    Librarian(int staffID, int salary, const std::string name, const std::string address, const std::string email);
 
     // Accessor methods
     int getStaffID() const;
@@ -36,8 +37,12 @@ public:
     void displayBorrowedBooks(int memberID);
     void calcFine(int memberID);
 
+    void printInfo();
     void displayMemberDetails(const Member &member);
+
 };
+
+extern Librarian Arbaaz;
 
 std::vector<Member> Memberlist;
 

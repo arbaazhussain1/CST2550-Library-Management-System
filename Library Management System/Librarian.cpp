@@ -1,22 +1,33 @@
 #include "Person.h"
+#include "Person.cpp"
 #include "Librarian.h"
 #include "Member.h"
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <regex>
+
 
 int newMemberID = 1;
-// Default constructor
-Librarian::Librarian() {
-}
 
-// Parameterized constructor
-Librarian::Librarian(int staffID, int salary, const std::string& name, const std::string& address, const std::string& email) {
+Librarian::Librarian(int staffID, int salary, const std::string name, const std::string address, const std::string email) {
     this->staffID = staffID;
+    this->salary = salary;
+    this->setName (name);
+    this->setAddress(address);
+    this->setEmail(email);
 }
 
 Librarian Arbaaz(1000, 1000, "Arbaaz", "MDX University", "AH2010@live.mdx.ac.uk");
 
+void printInfo()  {
+    std::cout << "Librarian Information:" << std::endl;
+    std::cout << "StaffID: " << Arbaaz.getStaffID() << std::endl;
+    std::cout << "Salary: " << Arbaaz.getSalary() << std::endl;
+    std::cout << "Name: " << Arbaaz.getName() << std::endl;
+    std::cout << "Address: " << Arbaaz.getAddress() << std::endl;
+    std::cout << "Email: " << Arbaaz.getEmail() << std::endl;
+}
 
 // Accessor methods
 int Librarian::getStaffID() const {
@@ -47,12 +58,25 @@ void Librarian::addMember() {
     std::cout << "Enter Member's Address: ";
     std::cin >> newAddress;
 
+    do {
     std::cout << "Enter Member's Email:";
     std::cin >> newEmail;
+        // Define a simple regular expression for email validation
+        std::regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+
+        // Check if the entered email matches the regular expression
+        if (std::regex_match(newEmail, emailRegex)) {
+            break; // Exit the loop if the email is valid
+        } else {
+            std::cout << "Invalid Email Format: Please Enter A Valid Email Format.\n";
+        }
+    } while (true);
+
+
 
     std::cout << "Adding New Member to the System...\n" << std::endl;
     // Create a new member and add it to the system
-    class Member inputMember (newMemberID, newName, newAddress, newEmail);
+    Member inputMember(newMemberID, newName, newAddress, newEmail);
 
     Memberlist.push_back(inputMember);
     newMemberID ++;
@@ -89,3 +113,4 @@ void Librarian::calcFine(int memberID) {
     // Placeholder implementation
     std::cout << "Calculating fine for member " << memberID << std::endl;
 }
+

@@ -1,13 +1,9 @@
 #include "Person.h"
 
-// Default constructor
-Person::Person() {
-}
 
-// Parameterized constructor
-Person::Person(const std::string& name, const std::string& address, const std::string& email)
-        : name(name), address(address), email(email) {
-}
+//Person::Person(const std::string name, const std::string address, const std::string email)
+//        : name(name), address(address), email(email) {
+//}
 
 // Accessor methods
 std::string Person::getName() const {
@@ -23,14 +19,14 @@ std::string Person::getEmail() const {
 }
 
 // Mutator methods
-void Person::setName(const std::string& newName) {
-    name = newName;
+void Person::setName( std::string newName) {
+    this->name = newName;
 }
 
-void Person::setAddress(const std::string& newAddress) {
-    address = newAddress;
+void Person::setAddress( std::string newAddress) {
+    this->address = newAddress;
 }
 
-void Person::setEmail(const std::string& newEmail) {
-    email = newEmail;
+void Person::setEmail( std::string newEmail) {
+    this->email = newEmail;
 }

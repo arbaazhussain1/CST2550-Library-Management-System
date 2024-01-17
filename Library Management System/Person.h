@@ -1,7 +1,7 @@
 #ifndef LIBRARY_MANAGEMENT_SYSTEM_PERSON_H
 #define LIBRARY_MANAGEMENT_SYSTEM_PERSON_H
 
-#include "string"
+#include <string>
 
 class Person{
 protected:
@@ -11,8 +11,8 @@ protected:
 
 public:
     // Constructors
-    Person(); // The Default Constructor
-    Person(const std::string& name, const std::string& address, const std::string& email );
+//    Person(); // The Default Constructor
+//    Person(const std::string& name, const std::string& address, const std::string& email );
 
     // Accessor methods
     std::string getName() const;
@@ -20,9 +20,9 @@ public:
     std::string getEmail() const;
 
     // Mutator methods
-    void setName (const std::string& name);
-    void setAddress (const std::string& address);
-    void setEmail (const std::string& email);
+    void setName ( std::string name);
+    void setAddress ( std::string address);
+    void setEmail ( std::string email);
 
 };
 #endif //LIBRARY_MANAGEMENT_SYSTEM_PERSON_H

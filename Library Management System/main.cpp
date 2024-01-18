@@ -182,7 +182,7 @@ int main() {
                 Arbaaz.displayBorrowedBooks(memberID);
                 break;
             case 5:
-//                librarianInstance.exitAndCloseProgram();
+                std::cout << "Exiting the program.\n";
                 return 0;
             default:
                 std::cout << "Invalid choice. Please try again.\n";

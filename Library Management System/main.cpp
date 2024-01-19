@@ -9,6 +9,10 @@
 #include "Member.cpp"
 #include "Book.h"
 #include "Book.cpp"
+#include <limits>
+#include <cctype>
+
+
 
 
 
@@ -49,18 +53,23 @@ int main() {
     std::cout << "[NOTE]: To Progress Further Into The Program As User Librarian\n\n";
     std::cout << "Do You Want to Proceed into the system? [Y/N] Y = Yes & N = No: ";
     char option;
-    std::cin >> option;
+    std::cin >> option; // Read only the first character
 
     // Validating the input
-    while (option != 'n' && option != 'N' && option != 'Y' && option != 'y') {
+    while (!(std::cin.peek() == '\n' && (std::toupper(option) == 'N' || std::toupper(option) == 'Y'))) {
         std::cout << "ERROR DETECTED! INVALID INPUT WHICH HAS BEEN ENTERED, PLEASE TRY AGAIN.\n";
         std::cout << "Do You Want to Proceed into the system? [Y/N] Y = Yes & N = No: ";
-        std::cin >> option;
+        // Clear the input buffer
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        std::cin >> option; // Read only the first character
     }
 
     // Check if the user chose to proceed
-    if (option == 'y' || option == 'Y') {
-        // Include the code here if you want it to be part of the program
+    if (std::toupper(option == 'y' || option == 'Y') ) {
+        std::cout << "Proceeding into the system...\n";
+
     } else {
         std::cout << "Exiting the program.\n";
         return 0;  // End the program
@@ -89,7 +98,7 @@ int main() {
     // Librarian librarianInstance(1000, 1000, "Arbaaz", "MDX University", "AH2010@live.mdx.ac.uk");
 
 
-    Arbaaz.printInfo();
+    Arbaaz.printLibrarianInfo();
 
     int memberID;
     int bookID;

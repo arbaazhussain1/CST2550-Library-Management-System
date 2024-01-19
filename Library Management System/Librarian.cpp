@@ -18,7 +18,7 @@ Librarian::Librarian(int staffID, int salary, const std::string name, const std:
 
 Librarian Arbaaz(1000, 1000, "Arbaaz", "MDX University", "AH2010@live.mdx.ac.uk");
 
-void Librarian::printInfo()  {
+void Librarian::printLibrarianInfo()  {
     std::cout << "Librarian Information:" << std::endl;
     std::cout << "StaffID: " << getStaffID() << std::endl;
     std::cout << "Salary: " << getSalary() << std::endl;

@@ -36,7 +36,7 @@ public:
     void displayBorrowedBooks(int memberID);
     void calcFine(int memberID);
 
-    void printInfo();
+    void printLibrarianInfo();
     void displayMemberDetails(const Member &member);
 
 };

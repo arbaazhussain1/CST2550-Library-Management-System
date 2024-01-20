@@ -17,7 +17,7 @@
 #include <regex>
 
 
-std::string filetoCSV = "Library Management System/library_books.csv" ;
+//std::string filetoCSV = "Library Management System/library_books.csv" ;
 struct Books {
     int bookID;
     bool isIssued;
@@ -29,7 +29,8 @@ struct Books {
 };
 
 void readAndPrintBooks(const std::string& filename) {
-    std::ifstream inputFile(filename);
+    std::ifstream inputFile;
+
 
     if (!inputFile.is_open()) {
         std::cerr << "Failed to open file: " << filename << std::endl;
@@ -131,6 +132,8 @@ int main() {
 
     while (!fileOpened) {
         std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
+//        std::getline(std::cin, EnterFile);
+
         std::cin >> EnterFile;
 
         readAndPrintBooks(EnterFile);
@@ -139,7 +142,7 @@ int main() {
         if (inputFile.is_open()) {
             std::cout << "The File " << EnterFile << " is able to read.\n";
             fileOpened = true;
-            std::ifstream file (filetoCSV);
+//            std::ifstream file (filetoCSV);
         } else {
             std::cout << "The File " << EnterFile << " is unable to read. Please Try Again.\n";
         }

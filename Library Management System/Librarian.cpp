@@ -48,28 +48,67 @@ void Librarian::setSalary(int salary) {
 // Other member functions (placeholder implementations)
 void Librarian::addMember() {
 
+//    std::string newName, newAddress, newEmail;
+//
+//    std::cout << "Enter Member's Name: ";
+//    std::cin >> newName;
+//
+//    std::cout << "Enter Member's Address: ";
+//    std::cin >> newAddress;
+//
+//    do {
+//    std::cout << "Enter Member's Email:";
+//    std::cin >> newEmail;
+//        // Define a simple regular expression for email validation
+//        std::regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+//
+//        // Check if the entered email matches the regular expression
+//        if (std::regex_match(newEmail, emailRegex)) {
+//            break; // Exit the loop if the email is valid
+//        } else {
+//            std::cout << "Invalid Email Format: Please Enter A Valid Email Format.\n";
+//        }
+//    } while (true);
+
     std::string newName, newAddress, newEmail;
 
+    // Regex pattern expressions to validate user input
+    std::regex nameRegexPattern(R"([a-zA-Z\s]+)"); // A member's name can only be characters and spaces.
+    std::regex addressRegexPattern("^[0-9A-Za-z ,.'-]+$"); // A member's address can contain numbers characters and specific symbols.
+    std::regex emailRegexPattern(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)"); // Email pattern
+
     std::cout << "Enter Member's Name: ";
-    std::cin >> newName;
+    std::cin.ignore(); // Clear the input buffer
+    std::getline(std::cin, newName);
+
+    // Validate the name using a while loop and Regex
+    while (!std::regex_match(newName, nameRegexPattern)) {
+        std::cout << "Invalid Name Format: Please Enter a Valid Name.\n";
+        std::cout << "Enter Member's Name: ";
+        std::getline(std::cin, newName);
+    }
 
     std::cout << "Enter Member's Address: ";
-    std::cin >> newAddress;
+    std::getline(std::cin, newAddress);
 
+    // Validate the address using a while loop and Regex
+    while (!std::regex_match(newAddress, addressRegexPattern)) {
+        std::cout << "Invalid Address Format: Please Enter a Valid Address.\n";
+        std::cout << "Enter Member's Address: ";
+        std::getline(std::cin, newAddress);
+    }
+
+    // Email validation loop (similar to the original code)
     do {
-    std::cout << "Enter Member's Email:";
-    std::cin >> newEmail;
-        // Define a simple regular expression for email validation
-        std::regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+        std::cout << "Enter Member's Email:";
+        std::cin >> newEmail;
 
-        // Check if the entered email matches the regular expression
-        if (std::regex_match(newEmail, emailRegex)) {
+        if (std::regex_match(newEmail, emailRegexPattern)) {
             break; // Exit the loop if the email is valid
         } else {
             std::cout << "Invalid Email Format: Please Enter A Valid Email Format.\n";
         }
     } while (true);
-
 
 
     std::cout << "Adding New Member to the System...\n" << std::endl;

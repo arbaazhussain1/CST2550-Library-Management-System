@@ -23,95 +23,145 @@
 #include <vector>
 
 
-struct Books {
-    int bookID;
-    bool isIssued;
-    std::string bookName;
-    std::string pageCount;
-    std::string authorFirstName;
-    std::string authorLastName;
-    std::string bookType;
-};
+//struct Books {
+//    int bookID;
+//    bool isIssued;
+//    std::string bookName;
+//    std::string pageCount;
+//    std::string authorFirstName;
+//    std::string authorLastName;
+//    std::string bookType;
+//};
+//
+//void readAndProcessBooks(const std::string& filename, std::vector<Books>& books) {
+//    std::string fileName;
+//    std::ifstream inputFile;
+//
+//    std::cout << "\nPlease enter the book data filename for the library management system (e.g. librarybooks.csv)"
+//              << std::endl;
+//    std::getline(std::cin, fileName);
+//
+//    // A validation check using a while loop, guard statement.
+//    while (fileName.size() <= 4 || fileName.substr(fileName.size() - 4) != ".csv") {
+//        std::cout << "Invalid file extension. Please ensure the file is a .csv file." << std::endl;
+//        std::cout << "Please enter the book data filename for the library management system (e.g. librarybooks.csv): ";
+//        std::getline(std::cin, fileName);
+//    }
+//    inputFile.open(fileName); // Attempt to open the filename provided.
+//
+//    // A validation check using a while loop, guard statement.
+//    while (!inputFile.is_open()) {
+//        std::cout << "Failed to open file: " << fileName << std::endl;
+//        std::cout << "Please check if the file exists in the current directory." << std::endl;
+//        std::cout << "Please enter the book data filename for the library management system (e.g. librarybooks.csv): ";
+//        std::getline(std::cin, fileName);
+//        inputFile.open(fileName);
+//    }
+//
+//    std::cout << "Attempting to open file: " << fileName << std::endl;
+//    inputFile.open(fileName);
+//
+//    if (!inputFile.is_open()) {
+//        std::cerr << "Failed to open file: " << fileName << std::endl;
+//        return; // Exit the function or handle the error appropriately
+//    }
+//
+//    std::cout << "File opened successfully." << std::endl;
+//
+//    std::string line = "";
+//    std::getline(inputFile, line); // Debug: Print the first line from the document, the cell headings.
+//    std::cout << "First Line: " << line << std::endl;
+//    line = "";                     // Debug: Discard the first headings line, as we only want to add books to the book vector.
+//
+//    while (std::getline(inputFile, line)) {
+//        int bookID;
+//        bool isIssued = false;
+//        std::string bookName;
+//        std::string pageCount;
+//        std::string authorFirstName;
+//        std::string authorLastName;
+//        std::string bookType;
+//        std::string temporaryString;
+//
+//        std::stringstream inputString(line);
+//
+//        getline(inputString, temporaryString, ',');
+//        bookID = std::atoi(temporaryString.c_str());
+//        getline(inputString, bookName, ',');
+//        getline(inputString, pageCount, ',');
+//        getline(inputString, authorFirstName, ',');
+//        getline(inputString, authorLastName, ',');
+//        getline(inputString, bookType, ',');
+//
+//        Books newBook{bookID, isIssued, bookName, pageCount, authorFirstName, authorLastName, bookType};
+//        books.push_back(newBook);
+//
+//        // Debug: Print the book details
+//        std::cout << "Read book: " << bookID << ", " << bookName << ", " << authorFirstName << " " << authorLastName
+//                  << std::endl;
+//    }
+//
+//    std::cout << "Books added successfully." << std::endl;
+//}
+//
+//void printBooks(const std::vector<Books>& books) {
+//    for (const auto& book : books) {
+//        std::cout << "Book ID: " << book.bookID << ", "
+//                  << "Book Name: " << book.bookName << ", "
+//                  << "Author: " << book.authorFirstName << " " << book.authorLastName << ", "
+//                  << "Issued: " << book.isIssued << std::endl;
+//    }
+//}
 
-void readAndProcessBooks(const std::string& filename, std::vector<Books>& books) {
-    std::string fileName;
-    std::ifstream inputFile;
+//void readFileData(const std::string& filename) {
+//    std::ifstream inputFile(filename);
+//    if (!inputFile.is_open()) {
+//        std::cout << "Error: File '" << filename << "' not found." << std::endl;
+//        return;
+//    }
+//
+//    std::string line;
+//    while (getline(inputFile, line)) {
+//        std::istringstream iss(line);
+//        std::string token;
+//
+//        // Process each token (assuming comma-separated values)
+//        while (getline(iss, token, ',')) {
+//            // Process each token as needed
+//            std::cout << token << " ";
+//        }
+//
+//        std::cout << std::endl;  // Move to the next line for the next record
+//    }
+//
+//    inputFile.close();
+//}
 
-    std::cout << "\nPlease enter the book data filename for the library management system (e.g. librarybooks.csv)"
-              << std::endl;
-    std::getline(std::cin, fileName);
+//void readFileData(const std::string& filename) {
+//    std::ifstream inputFile(filename);
+//    inputFile.open(filename);
+//    if (!inputFile.is_open()) {
+//        std::cout << "Error: File '" << filename << "' not found." << std::endl;
+//        return;
+//    }
+//
+//    std::string line;
+//    while (getline(inputFile, line)) {
+//        std::istringstream iss(line);
+//        std::string token;
+//
+//        // Process each token (assuming comma-separated values)
+//        while (getline(iss, token, ',')) {
+//            // Process each token as needed
+//            std::cout << token << " ";
+//        }
+//
+//        std::cout << std::endl;  // Move to the next line for the next record
+//    }
+//
+//    inputFile.close();
+//}
 
-    // A validation check using a while loop, guard statement.
-    while (fileName.size() <= 4 || fileName.substr(fileName.size() - 4) != ".csv") {
-        std::cout << "Invalid file extension. Please ensure the file is a .csv file." << std::endl;
-        std::cout << "Please enter the book data filename for the library management system (e.g. librarybooks.csv): ";
-        std::getline(std::cin, fileName);
-    }
-    inputFile.open(fileName); // Attempt to open the filename provided.
-
-    // A validation check using a while loop, guard statement.
-    while (!inputFile.is_open()) {
-        std::cout << "Failed to open file: " << fileName << std::endl;
-        std::cout << "Please check if the file exists in the current directory." << std::endl;
-        std::cout << "Please enter the book data filename for the library management system (e.g. librarybooks.csv): ";
-        std::getline(std::cin, fileName);
-        inputFile.open(fileName);
-    }
-
-    std::cout << "Attempting to open file: " << fileName << std::endl;
-    inputFile.open(fileName);
-
-    if (!inputFile.is_open()) {
-        std::cerr << "Failed to open file: " << fileName << std::endl;
-        return; // Exit the function or handle the error appropriately
-    }
-
-    std::cout << "File opened successfully." << std::endl;
-
-    std::string line = "";
-    std::getline(inputFile, line); // Debug: Print the first line from the document, the cell headings.
-    std::cout << "First Line: " << line << std::endl;
-    line = "";                     // Debug: Discard the first headings line, as we only want to add books to the book vector.
-
-    while (std::getline(inputFile, line)) {
-        int bookID;
-        bool isIssued = false;
-        std::string bookName;
-        std::string pageCount;
-        std::string authorFirstName;
-        std::string authorLastName;
-        std::string bookType;
-        std::string temporaryString;
-
-        std::stringstream inputString(line);
-
-        getline(inputString, temporaryString, ',');
-        bookID = std::atoi(temporaryString.c_str());
-        getline(inputString, bookName, ',');
-        getline(inputString, pageCount, ',');
-        getline(inputString, authorFirstName, ',');
-        getline(inputString, authorLastName, ',');
-        getline(inputString, bookType, ',');
-
-        Books newBook{bookID, isIssued, bookName, pageCount, authorFirstName, authorLastName, bookType};
-        books.push_back(newBook);
-
-        // Debug: Print the book details
-        std::cout << "Read book: " << bookID << ", " << bookName << ", " << authorFirstName << " " << authorLastName
-                  << std::endl;
-    }
-
-    std::cout << "Books added successfully." << std::endl;
-}
-
-void printBooks(const std::vector<Books>& books) {
-    for (const auto& book : books) {
-        std::cout << "Book ID: " << book.bookID << ", "
-                  << "Book Name: " << book.bookName << ", "
-                  << "Author: " << book.authorFirstName << " " << book.authorLastName << ", "
-                  << "Issued: " << book.isIssued << std::endl;
-    }
-}
 
 
 
@@ -149,10 +199,47 @@ int main() {
         return 0;  // End the program
     }
 
-    std::vector<Books> books;  // Declare the vector to store Books
-    readAndProcessBooks("library_books.csv", books);
-    printBooks(books);
+//    std::vector<Books> books;  // Declare the vector to store Books
+//    readAndProcessBooks("library_books.csv", books);
+//    printBooks(books);
 
+//    std::string EnterFile;
+//    bool fileOpened = false;
+//
+//    while (!fileOpened) {
+//        std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
+//        std::getline(std::cin, EnterFile);
+//
+//        std::ifstream inputFile(EnterFile);
+//        inputFile.open(EnterFile);
+//
+//        if (inputFile.is_open() && inputFile.peek() != std::ifstream::traits_type::eof()) {
+//            std::cout << "The File " << EnterFile << " is able to read.\n";
+//            readFileData(EnterFile);
+//            fileOpened = true;
+//        } else {
+//            std::cout << "The File " << EnterFile << "  is unable to read: Please Try Again.\n";
+//        }
+//
+//    }
+//    std::string EnterFile;
+//    bool fileOpened = false;
+//
+//    while (!fileOpened) {
+//        std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
+//        std::cin >> EnterFile;
+//
+//        std::ifstream inputFile(EnterFile);
+//
+//
+//        if (inputFile.is_open()) {
+//            std::cout << "The File " << EnterFile << " is able to read.\n";
+//            readFileData(EnterFile);
+//            fileOpened = true;
+//        } else {
+//            std::cout << "The File " << EnterFile << "  is unable to read: Please Try Again.\n";
+//        }
+//    }
 
     Arbaaz.printLibrarianInfo();
 

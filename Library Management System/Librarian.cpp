@@ -1,6 +1,5 @@
-#include "Person.cpp"
+
 #include "Librarian.h"
-#include "Member.h"
 #include <sstream>
 #include <string>
 #include <regex>
@@ -115,7 +114,7 @@ void Librarian::addMember() {
     // Create a new member and add it to the system
     Member inputMember(newMemberID, newName, newAddress, newEmail);
 
-    Memberlist.push_back(inputMember);
+    Memberlist().push_back(inputMember);
     newMemberID ++;
     std::cout << "New Member Added to the System.\n" << std::endl;
 

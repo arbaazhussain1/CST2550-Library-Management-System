@@ -2,20 +2,15 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "Person.h"
-#include "Librarian.h"
-#include "Librarian.cpp"
-#include "Member.h"
-#include "Member.cpp"
-#include "Book.h"
-#include "Book.cpp"
 #include <limits>
-#include <cctype>
-
-#include <sstream>
+//#include <cctype>
 #include <vector>
 #include <regex>
 
+#include "Person.h"
+#include "Librarian.h"
+#include "Member.h"
+#include "Book.h"
 
 //std::string filetoCSV = "Library Management System/library_books.csv" ;
 struct Books {
@@ -28,17 +23,28 @@ struct Books {
     std::string bookType;
 };
 
-void readAndPrintBooks(const std::string& filename) {
+void readAndPrintBooks() {
+    std::string EnterFile;
     std::ifstream inputFile;
+    bool fileOpened = false;
 
+    while (!fileOpened) {
+        std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
+        std::cin >> EnterFile;
 
-    if (!inputFile.is_open()) {
-        std::cerr << "Failed to open file: " << filename << std::endl;
-        return;
+        inputFile.open(EnterFile);
+
+        if (inputFile.is_open()) {
+            std::cout << "The File " << EnterFile << " is able to read.\n";
+            fileOpened = true;
+        } else {
+            std::cout << "The File " << EnterFile << " is unable to read. Please Try Again.\n";
+        }
     }
 
-    std::string line;
+    std::string line = "";
     std::getline(inputFile, line); // Discard the first line (headers)
+    line = "";
 
     while (std::getline(inputFile, line)) {
         int bookID;
@@ -125,30 +131,7 @@ int main() {
         return 0;  // End the program
     }
 
-
-
-    std::string EnterFile;
-    bool fileOpened = false;
-
-    while (!fileOpened) {
-        std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
-//        std::getline(std::cin, EnterFile);
-
-        std::cin >> EnterFile;
-
-        readAndPrintBooks(EnterFile);
-
-        std::ifstream inputFile(EnterFile);
-        if (inputFile.is_open()) {
-            std::cout << "The File " << EnterFile << " is able to read.\n";
-            fileOpened = true;
-//            std::ifstream file (filetoCSV);
-        } else {
-            std::cout << "The File " << EnterFile << " is unable to read. Please Try Again.\n";
-        }
-    }
-
-
+    readAndPrintBooks();
     Arbaaz.printLibrarianInfo();
 
     int memberID;
@@ -250,6 +233,6 @@ int main() {
     } while (choice != 5);
 
 
-            return 0;
+    return 0;
 }
 

@@ -1,10 +1,10 @@
-#ifndef LIBRARY_MANAGEMENT_SYSTEM_BOOK_H
-#define LIBRARY_MANAGEMENT_SYSTEM_BOOK_H
+#ifndef BOOK_H
+#define BOOK_H
 
 #include <string>
 #include <ctime>  // Include for std::time_t
+
 class Member;
-class Librarian;
 
 class Book {
 private:
@@ -30,7 +30,7 @@ public:
     // Mutator methods
     void setDueDate(std::time_t dueDate);
     void returnBook();
-    void borrowBook(Member* borrower, std::time_t dueDate);
+    void borrowBook(Member *borrower, std::time_t dueDate);
 };
 
 #endif // LIBRARY_MANAGEMENT_SYSTEM_BOOK_H

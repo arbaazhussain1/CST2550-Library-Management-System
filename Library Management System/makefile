@@ -1,20 +1,25 @@
+CXXFLAGS = -Wall -Wextra -Wpedantic
+
+all: RunCode
+
 RunCode: main.o Librarian.o Member.o Person.o Book.o
 	g++ main.o Librarian.o Member.o Person.o Book.o -o RunCode
 
 main.o: main.cpp
-	g++ -c main.cpp
+	g++ $(CXXFLAGS) -c main.cpp -o main.o
 
 Librarian.o: Librarian.cpp Librarian.h
-	g++ -c Librarian.cpp
+	g++ $(CXXFLAGS) -c Librarian.cpp -o Librarian.o
 
 Member.o: Member.cpp Member.h
-	g++ -c Member.cpp
+	g++ $(CXXFLAGS) -c Member.cpp -o Member.o
 
 Person.o: Person.cpp Person.h
-	g++ -c Person.cpp
+	g++ $(CXXFLAGS) -c Person.cpp -o Person.o
 
 Book.o: Book.cpp Book.h
-	g++ -c Book.cpp
+	g++ $(CXXFLAGS) -c Book.cpp -o Book.o
 
+.PHONY: clean
 clean:
-	rm *.o RunCode
+	$(RM) *.o RunCode

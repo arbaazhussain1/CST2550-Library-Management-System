@@ -1,5 +1,5 @@
-#ifndef LIBRARY_MANAGEMENT_SYSTEM_MEMBER_H
-#define LIBRARY_MANAGEMENT_SYSTEM_MEMBER_H
+#ifndef MEMBER_H
+#define MEMBER_H
 
 #include <string>
 #include "Person.h"
@@ -13,7 +13,7 @@ private:
     std::vector<Book> booksLoaned;
 
 public:
-   Member(int memberID, const std::string& name, const std::string& address, const std::string& email);
+    Member(int memberID, const std::string& name, const std::string& address, const std::string& email);
 
     // Accessor methods
     int getMemberID() const;
@@ -23,5 +23,8 @@ public:
     void setMemberID(int newMemberID);
     void setBooksBorrowed(const Book& book);
 };
+
+std::vector<Member> &Memberlist();
+
 
 #endif // LIBRARY_MANAGEMENT_SYSTEM_MEMBER_H

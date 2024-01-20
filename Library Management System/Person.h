@@ -1,5 +1,5 @@
-#ifndef LIBRARY_MANAGEMENT_SYSTEM_PERSON_H
-#define LIBRARY_MANAGEMENT_SYSTEM_PERSON_H
+#ifndef PERSON_H
+#define PERSON_H
 
 #include <string>
 

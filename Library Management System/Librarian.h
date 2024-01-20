@@ -1,6 +1,5 @@
-
-#ifndef LIBRARY_MANAGEMENT_SYSTEM_LIBRARIAN_H
-#define LIBRARY_MANAGEMENT_SYSTEM_LIBRARIAN_H
+#ifndef LIBRARIAN_H
+#define LIBRARIAN_H
 
 
 #include <string>
@@ -14,8 +13,8 @@
 
 class Librarian: public Person{
 private:
-      int staffID;
-      int salary;
+    int staffID;
+    int salary;
 
 public:
 //    // Constructors
@@ -43,7 +42,6 @@ public:
 
 extern Librarian Arbaaz;
 
-std::vector<Member> Memberlist;
 
 
-#endif //LIBRARY_MANAGEMENT_SYSTEM_LIBRARIAN_H
+#endif //LIBRARIAN_H

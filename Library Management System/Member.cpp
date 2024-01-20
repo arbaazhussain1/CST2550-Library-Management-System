@@ -1,9 +1,9 @@
-#include "Person.h"
+
 #include "Member.h"
 
 // Constructor
 Member::Member(int memberID, const std::string& name, const std::string& address, const std::string& email)
-     : memberID(memberID), booksLoaned() {
+        : memberID(memberID), booksLoaned() {
     setName(name);
     setAddress(address);
     setEmail(email);
@@ -24,4 +24,10 @@ void Member::setMemberID(int newMemberID) {
 
 void Member::setBooksBorrowed(const Book& book) {
     booksLoaned.push_back(book);
+}
+
+std::vector<Member> &Memberlist(){
+    // A vector to hold all of the member objects that will be added to the system.
+    static std::vector<Member> memberList;
+    return memberList;
 }

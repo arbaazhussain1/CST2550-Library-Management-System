@@ -1,9 +1,10 @@
-CXXFLAGS = -Wall -Wextra -Wpedantic
+CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++11
+LDFLAGS = -stdlib=libc++
 
 all: RunCode
 
 RunCode: main.o Librarian.o Member.o Person.o Book.o
-	g++ main.o Librarian.o Member.o Person.o Book.o -o RunCode
+	g++ $(LDFLAGS) main.o Librarian.o Member.o Person.o Book.o -o RunCode
 
 main.o: main.cpp
 	g++ $(CXXFLAGS) -c main.cpp -o main.o

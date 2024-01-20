@@ -47,28 +47,6 @@ void Librarian::setSalary(int salary) {
 // Other member functions (placeholder implementations)
 void Librarian::addMember() {
 
-//    std::string newName, newAddress, newEmail;
-//
-//    std::cout << "Enter Member's Name: ";
-//    std::cin >> newName;
-//
-//    std::cout << "Enter Member's Address: ";
-//    std::cin >> newAddress;
-//
-//    do {
-//    std::cout << "Enter Member's Email:";
-//    std::cin >> newEmail;
-//        // Define a simple regular expression for email validation
-//        std::regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
-//
-//        // Check if the entered email matches the regular expression
-//        if (std::regex_match(newEmail, emailRegex)) {
-//            break; // Exit the loop if the email is valid
-//        } else {
-//            std::cout << "Invalid Email Format: Please Enter A Valid Email Format.\n";
-//        }
-//    } while (true);
-
     std::string newName, newAddress, newEmail;
 
     // Regex pattern expressions to validate user input

@@ -13,15 +13,15 @@
 #include "Book.h"
 
 //std::string filetoCSV = "Library Management System/library_books.csv" ;
-struct Books {
-    int bookID;
-    bool isIssued;
-    std::string bookName;
-    std::string pageCount;
-    std::string authorFirstName;
-    std::string authorLastName;
-    std::string bookType;
-};
+//struct Books {
+//    int bookID;
+//    bool isIssued;
+//    std::string bookName;
+//    std::string pageCount;
+//    std::string authorFirstName;
+//    std::string authorLastName;
+//    std::string bookType;
+//};
 
 void readAndPrintBooks() {
     std::string EnterFile;
@@ -69,11 +69,11 @@ void readAndPrintBooks() {
         getline(inputString, authorLastName, ',');
         getline(inputString, bookType, ',');
 
-        Books newBook{bookID, isIssued, bookName, pageCount, authorFirstName, authorLastName, bookType};
+        Book newBook (bookID, bookName, authorFirstName, authorLastName, bookType, isIssued);
 
         // Use the appropriate vector or container to store books
         // For example: bookList.push_back(newBook);
-
+        getBookList().push_back(newBook);
         // Print the book details
         std::cout << "Read book: BookID: " << bookID << ", Book Name: " << bookName << ", Page Count: " << pageCount
                   << ", Author: " << "First Name: " << authorFirstName << ", Last Name: " << authorLastName
@@ -191,8 +191,6 @@ int main() {
 
 // Call the issueBook function with user inputs
                 Arbaaz.issueBook(memberID, bookID);
-                return 0;
-
                 break;
             case 3:
                 // Validate input for memberID and bookID

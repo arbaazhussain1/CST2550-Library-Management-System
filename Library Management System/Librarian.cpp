@@ -148,7 +148,7 @@ void Librarian::issueBook(int memberID, int bookID) {
 
     if (memberBorrowingBook == nullptr || bookToBorrow == nullptr) {
         std::cout << "Member or book not found. Unable to issue the book." << std::endl;
-        delete bookToBorrow;  // Delete the dynamically allocated book object
+//        delete bookToBorrow;  // Delete the dynamically allocated book object
         return;
     }
 
@@ -171,7 +171,7 @@ void Librarian::issueBook(int memberID, int bookID) {
     bookToBorrow->setBookAsIssued(true);
     bookToBorrow->borrowBook(memberBorrowingBook, dueDate);
     std::cout << "Book ID " << bookID << " has been successfully issued to Member ID " << memberID << std::endl;
-    delete bookToBorrow;  // Delete the dynamically allocated book object
+//    delete bookToBorrow;  // Delete the dynamically allocated book object
 }
 
 

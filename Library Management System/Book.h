@@ -24,7 +24,9 @@ private:
 
 
 public:
-    Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName);
+    Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName,std::string bookType, bool isIssued);
+//    Book newBook(bookID, isIssued, bookName, pageCount, authorFirstName, authorLastName, bookType);
+//    std::string bookName, std::string authorFirstName, std::string authorLastName, bool isIssued);
 
     // Accessor methods
     int getBookID() const;

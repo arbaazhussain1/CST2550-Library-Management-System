@@ -1,9 +1,9 @@
-
-#include "Librarian.h"
 #include <sstream>
 #include <string>
 #include <regex>
 
+
+#include "Librarian.h"
 
 int newMemberID = 1;
 
@@ -108,10 +108,60 @@ void Librarian::displayMemberDetails(const Member& member) {
     std::cout << "Email: " << member.getEmail() << std::endl;
 }
 
-void Librarian::issueBook(int memberID, int bookID) {
-    // Placeholder implementation
-    std::cout << "Issuing book to member " << memberID << " with book ID " << bookID << std::endl;
+Member* Librarian::findMemberInSystem(int memberID) {
+    std::vector<Member>& members = Memberlist();
+    for (Member& member : members) {
+        std::cout << "Member ID in vector: " << member.getMemberID() << std::endl;
+        if (member.getMemberID() == memberID) {
+            return &member;
+        }
+    }
+    return nullptr;
 }
+
+Book* Librarian::findBookInSystem(int bookID) {
+    std::vector<Book>& books = getBookList();
+    for (Book& book : books) {
+        std::cout << "Book ID in vector: " << book.getBookID() << std::endl;
+        if (book.getBookID() == bookID) {
+            return new Book(book);  // Return a dynamically allocated copy of the found book
+        }
+    }
+    return nullptr;
+}
+
+void Librarian::issueBook(int memberID, int bookID) {
+    Member* memberBorrowingBook = findMemberInSystem(memberID);
+    Book* bookToBorrow = findBookInSystem(bookID);
+
+    if (memberBorrowingBook == nullptr || bookToBorrow == nullptr) {
+        std::cout << "Member or book not found. Unable to issue the book." << std::endl;
+        delete bookToBorrow;  // Delete the dynamically allocated book object
+        return;
+    }
+
+    if (bookToBorrow->isBookIssued()) {
+        std::cout << "The book with ID " << bookID << " is already issued and cannot be borrowed at the moment." << std::endl;
+        return;
+    }
+
+    std::cout << "\nMember Name: " << memberBorrowingBook->getName() << std::endl;
+    std::cout << "Member ID: " << memberBorrowingBook->getMemberID() << std::endl;
+    std::cout << "Book Title: " << bookToBorrow->getBookName() << std::endl;
+    std::cout << "Book ID: " << bookToBorrow->getBookID() << std::endl;
+
+    time_t currentTime = time(nullptr);
+    std::cout << "The book's issue date is: " << ctime(&currentTime);
+
+    time_t dueDate = currentTime + (3 * 24 * 60 * 60);
+    std::cout << "The book's due date is: " << ctime(&dueDate);
+
+    bookToBorrow->setBookAsIssued(true);
+    bookToBorrow->borrowBook(memberBorrowingBook, dueDate);
+    std::cout << "Book ID " << bookID << " has been successfully issued to Member ID " << memberID << std::endl;
+    delete bookToBorrow;  // Delete the dynamically allocated book object
+}
+
 
 void Librarian::returnBook(int memberID, int bookID) {
     // Placeholder implementation
@@ -127,4 +177,5 @@ void Librarian::calcFine(int memberID) {
     // Placeholder implementation
     std::cout << "Calculating fine for member " << memberID << std::endl;
 }
+
 

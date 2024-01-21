@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+
 #include "Member.h"
 #include "Person.h"
 
@@ -37,7 +38,8 @@ public:
 
     void printLibrarianInfo();
     void displayMemberDetails(const Member &member);
-
+    Book* findBookInSystem(int bookID);
+    Member* findMemberInSystem(int memberID);
 };
 
 extern Librarian Arbaaz;

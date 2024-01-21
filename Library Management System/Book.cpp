@@ -21,6 +21,9 @@ std::string Book::getAuthorFirstName() const {
 std::string Book::getAuthorLastName() const {
     return authorLastName;
 }
+void Book::setBookAsIssued(bool bookIssued) {
+    isIssued = bookIssued;
+}
 
 std::string Book::getBookType() const {
     return bookType;
@@ -34,6 +37,9 @@ std::time_t Book::getDueDate() const {
 void Book::setDueDate(std::time_t dueDate) {
     this->dueDate = dueDate;
 }
+bool Book::isBookIssued() const {
+    return isIssued;
+}
 
 void Book::returnBook() {
     borrower = nullptr;
@@ -43,4 +49,9 @@ void Book::returnBook() {
 void Book::borrowBook(Member* borrower, std::time_t dueDate) {
     this->borrower = borrower;
     this->dueDate = dueDate;
+}
+
+std::vector<Book> &getBookList(){
+    static std::vector<Book> bookList;
+    return bookList;
 }

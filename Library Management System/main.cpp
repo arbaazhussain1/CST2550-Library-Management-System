@@ -40,6 +40,9 @@ void readAndPrintBooks() {
         } else {
             std::cout << "The File " << EnterFile << " is unable to read. Please Try Again.\n";
         }
+        // Clear any remaining characters in the input buffer
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     }
 
     std::string line = "";
@@ -71,10 +74,12 @@ void readAndPrintBooks() {
         // Use the appropriate vector or container to store books
         // For example: bookList.push_back(newBook);
 
-        // Debug: Print the book details
-        std::cout << "Read book: " << bookID << ", " << bookName << ", " << authorFirstName << " " << authorLastName
-                  << std::endl;
+        // Print the book details
+        std::cout << "Read book: BookID: " << bookID << ", Book Name: " << bookName << ", Page Count: " << pageCount
+                  << ", Author: " << "First Name: " << authorFirstName << ", Last Name: " << authorLastName
+                  << ", Type: " << bookType << std::endl;
     }
+
 
     std::cout << "Books added successfully." << std::endl;
 
@@ -134,8 +139,8 @@ int main() {
     readAndPrintBooks();
     Arbaaz.printLibrarianInfo();
 
-    int memberID;
-    int bookID;
+//    int memberID;
+//    int bookID;
     int choice;
 
     do {
@@ -172,23 +177,22 @@ int main() {
                 Arbaaz.addMember();
                 break;
             case 2:
-//                // Validate input for memberID and bookID
-//                std::cout << "Enter Member ID: ";
-//                std::cin >> memberID;
-//                std::cout << "Enter Book ID: ";
-//                std::cin >> bookID;
-//
-//                while (std::cin.fail() || memberID < 0 || bookID < 0) {
-//                    std::cout << "Invalid input. Please enter non-negative integers for Member ID and Book ID.\n";
-//                    std::cin.clear();
-//                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-//                    std::cout << "Enter Member ID: ";
-//                    std::cin >> memberID;
-//                    std::cout << "Enter Book ID: ";
-//                    std::cin >> bookID;
-//                }
 
+                int memberID, bookID;
+
+                std::cout << "Enter Member ID: ";
+                std::cin >> memberID;
+
+// Clear the input buffer, including the newline character
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Enter Book ID: ";
+                std::cin >> bookID;
+
+// Call the issueBook function with user inputs
                 Arbaaz.issueBook(memberID, bookID);
+                return 0;
+
                 break;
             case 3:
                 // Validate input for memberID and bookID

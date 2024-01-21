@@ -1,8 +1,13 @@
 #ifndef BOOK_H
 #define BOOK_H
 
+#include <iostream>
 #include <string>
 #include <ctime>  // Include for std::time_t
+#include <vector>
+
+
+
 
 class Member;
 
@@ -14,7 +19,9 @@ private:
     std::string authorLastName;
     std::string bookType;
     std::time_t dueDate;  // Using std::time_t for due date
-    Member* borrower;     // Pointer to Member object
+    class Member* borrower;     // Pointer to Member object
+    bool isIssued;
+
 
 public:
     Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName);
@@ -31,6 +38,10 @@ public:
     void setDueDate(std::time_t dueDate);
     void returnBook();
     void borrowBook(Member *borrower, std::time_t dueDate);
+    bool isBookIssued() const;
+    void setBookAsIssued(bool bookIssued);
 };
+
+std::vector<Book>& getBookList();
 
 #endif // LIBRARY_MANAGEMENT_SYSTEM_BOOK_H

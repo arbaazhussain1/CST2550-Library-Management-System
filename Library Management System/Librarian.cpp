@@ -107,6 +107,15 @@ void Librarian::displayMemberDetails(const Member& member) {
     std::cout << "Address: " << member.getAddress() << std::endl;
     std::cout << "Email: " << member.getEmail() << std::endl;
 }
+//// Function to get the book list
+//std::vector<Book>& getBookList() {
+//    return Book::getBookList();
+//}
+//
+//// Function to get the member list
+//std::vector<Member>& getMemberList() {
+//    return Member::Memberlist();
+//}
 
 Member* Librarian::findMemberInSystem(int memberID) {
     std::vector<Member>& members = Memberlist();
@@ -124,13 +133,16 @@ Book* Librarian::findBookInSystem(int bookID) {
     for (Book& book : books) {
         std::cout << "Book ID in vector: " << book.getBookID() << std::endl;
         if (book.getBookID() == bookID) {
-            return new Book(book);  // Return a dynamically allocated copy of the found book
+            return &book;  // Return a dynamically allocated copy of the found book
         }
     }
     return nullptr;
 }
 
 void Librarian::issueBook(int memberID, int bookID) {
+    std::vector<Book>& books = getBookList();
+    std::cout << "Number of books in the system: " << books.size() << std::endl;  // Add this line
+
     Member* memberBorrowingBook = findMemberInSystem(memberID);
     Book* bookToBorrow = findBookInSystem(bookID);
 

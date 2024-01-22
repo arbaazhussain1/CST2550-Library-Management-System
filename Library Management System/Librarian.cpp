@@ -1,3 +1,7 @@
+// The Library Management System for the Librarian.cpp file.
+
+// The derived class from Person, here the class will inherit/add the members of the Person class directly.
+
 #include <sstream>
 #include <string>
 #include <regex>
@@ -135,18 +139,18 @@ Book* Librarian::findBookInSystem(int bookID) {
 
 void Librarian::issueBook(int memberID, int bookID) {
     std::vector<Book>& books = getBookList();
-    std::cout << "Number of books in the system: " << books.size() << std::endl;  // Add this line
+    std::cout << "Number of Books within the system: " << books.size() << std::endl;  // Add this line
 
     Member* memberBorrowingBook = findMemberInSystem(memberID);
     Book* bookToBorrow = findBookInSystem(bookID);
 
     if (memberBorrowingBook == nullptr || bookToBorrow == nullptr) {
-        std::cout << "Member or book not found. Unable to issue the book." << std::endl;
+        std::cout << "Member or Book has not been found. Unable to issue the book." << std::endl;
         return;
     }
 
     if (bookToBorrow->isBookIssued()) {
-        std::cout << "The book with ID " << bookID << " is already issued and cannot be borrowed at the moment." << std::endl;
+        std::cout << "The Book with ID " << bookID << " is already issued and cannot be borrowed at the moment in time." << std::endl;
         return;
     }
 
@@ -156,10 +160,10 @@ void Librarian::issueBook(int memberID, int bookID) {
     std::cout << "Book ID: " << bookToBorrow->getBookID() << std::endl;
 
     time_t currentTime = time(nullptr);
-    std::cout << "The book's issue date is: " << ctime(&currentTime);
+    std::cout << "The Book's issue date is: " << ctime(&currentTime);
 
     time_t dueDate = currentTime + (3 * 24 * 60 * 60);
-    std::cout << "The book's due date is: " << ctime(&dueDate);
+    std::cout << "The Book's due date is: " << ctime(&dueDate);
 
     bookToBorrow->setBookAsIssued(true);
     bookToBorrow->borrowBook(memberBorrowingBook, dueDate);
@@ -171,13 +175,13 @@ void Librarian::issueBook(int memberID, int bookID) {
 void Librarian::returnBook(int memberID, int bookID) {
     Member* memberReturningBook = findMemberInSystem(memberID); // Find the member from the parameter given when calling the function.
     if (!memberReturningBook) {
-        std::cout << "Member with ID " << memberID << " not found." << std::endl;
+        std::cout << "Member with ID " << memberID << " has not found." << std::endl;
         return;
     }
 
     Book* bookBeingReturned = findBookInSystem(bookID); // Find the book from the parameter given when calling the function.
     if (!bookBeingReturned) {
-        std::cout << "Book with ID " << bookID << " not found." << std::endl;
+        std::cout << "Book with ID " << bookID << " has not found." << std::endl;
         return;
     }
 
@@ -226,28 +230,28 @@ void Librarian::displayBorrowedBooks(int memberID) {
                 std::cout << "\nBook ID: " << book.getBookID() << ", "
                           << "Book name: " << book.getBookName() << ", "
                           << "Author full name: " << book.getAuthorFirstName() << " " << book.getAuthorLastName() << ", "
-                          << "Due date for book: " << ctime(&date);
+                          << "Due date for Book: " << ctime(&date);
             }
         }
     }
     else
     {
-        std::cout << "Member with ID " << memberID << " not found." << std::endl;
+        std::cout << "Member with ID " << memberID << " has not been found." << std::endl;
     }
 }
 
 void Librarian::calcFine(int memberID, Book* bookBeingReturned) {
     time_t currentTime = time(nullptr); // The current system time.
 
-    std::cout << "Current time of return: " << ctime(&currentTime) << std::endl;
+    std::cout << "The current time of return: " << ctime(&currentTime) << std::endl;
     if (currentTime > bookBeingReturned->getDueDate()){
         double daysLate = difftime(currentTime, bookBeingReturned->getDueDate()) / (60 * 60 * 24);
         double fine = daysLate * 1;
 
-        std::cout << "The book is " << daysLate << "days late, incuring a fine of " << fine << std::endl;
-        std::cout << "Fine due: £" << floor(fine) << std::endl;
-        std::cout << "MemberID: " << memberID << "returning: " << bookBeingReturned << std::endl;
+        std::cout << "The Book is " << daysLate << "this number of days late, you will be incurring fine amount of  " << fine << std::endl;
+        std::cout << "The Fine which is due: £" << floor(fine) << std::endl;
+        std::cout << "MemberID: " << memberID << "Returning: " << bookBeingReturned << std::endl;
     } else {
-        std::cout << "You are within the books due date, so you will not incur a fine" << std::endl;
+        std::cout << "Since the book is within the return deadline, there will be no fine " << std::endl;
     }
 }

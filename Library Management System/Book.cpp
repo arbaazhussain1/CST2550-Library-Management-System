@@ -1,8 +1,8 @@
 // The Library Management System for the Book.cpp file.
-#include "Book.h"
+#include "Book.h"  // Include the header file of the Book class.
 
 
-// Constructor
+// The constructor of the Book object.
 Book::Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName,std::string bookType, bool isIssued) {
     this->bookID = bookID;
     this->bookName = bookName;

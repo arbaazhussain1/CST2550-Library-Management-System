@@ -54,7 +54,9 @@ void Librarian::setSalary(int salary) {
     this->salary = salary;
 }
 
-// Other Member functions
+// Other Member functions:
+
+// Function to add a member to the system and save it in memory.
 void Librarian::addMember() {
 
     std::string newName, newAddress, newEmail;
@@ -103,14 +105,14 @@ void Librarian::addMember() {
     // Create a new member and add it to the system
     Member inputMember(newMemberID, newName, newAddress, newEmail);
 
-    Memberlist().push_back(inputMember);
+    Memberlist().push_back(inputMember); // Add new Member to the member list vector.
     newMemberID ++;
     std::cout << "New Member Added to the System.\n" << std::endl;
 
     // Display the details of the newly added member
     displayMemberDetails(inputMember);
 }
-
+// A function that prints when new member just got added to the system.
 void Librarian::displayMemberDetails(const Member& member) {
     std::cout << "Member Details:\n";
     std::cout << "Member ID: " << member.getMemberID() << std::endl;
@@ -119,7 +121,7 @@ void Librarian::displayMemberDetails(const Member& member) {
     std::cout << "Email: " << member.getEmail() << std::endl;
 }
 
-
+// The function to find a member by its own id, which is within the member vector that is stored in memory.
 Member* Librarian::findMemberInSystem(int memberID) {
     std::vector<Member>& members = Memberlist();
     for (Member& member : members) {
@@ -130,7 +132,7 @@ Member* Librarian::findMemberInSystem(int memberID) {
     }
     return nullptr;
 }
-
+// The function to find a book by its own id, which is within the book vector that is stored in memory.
 Book* Librarian::findBookInSystem(int bookID) {
     std::vector<Book>& books = getBookList();
     for (Book& book : books) {
@@ -141,7 +143,7 @@ Book* Librarian::findBookInSystem(int bookID) {
     }
     return nullptr;
 }
-
+// Function to issue a book to the member through using memberID and bookID.
 void Librarian::issueBook(int memberID, int bookID) {
     std::vector<Book>& books = getBookList();
     std::cout << "Number of Books within the system: " << books.size() << std::endl;  // Add this line
@@ -175,8 +177,7 @@ void Librarian::issueBook(int memberID, int bookID) {
     memberBorrowingBook->setBooksBorrowed(*bookToBorrow);
     std::cout << "Book ID " << bookID << " has been successfully issued to Member ID " << memberID << std::endl;
 }
-
-
+// Function to return books from members. This changes the boolean value of the book object from true to false, allowing it to be borrowed again.
 void Librarian::returnBook(int memberID, int bookID) {
     Member* returningBookByMember = findMemberInSystem(memberID); // Find the member from the parameter given when calling the function.
     if (!returningBookByMember) {
@@ -210,6 +211,7 @@ void Librarian::returnBook(int memberID, int bookID) {
     }
 }
 
+// A function that displays all books borrowed by a member based on the member ID.
 void Librarian::displayBorrowedBooks(int memberID) {
     Member* member = Arbaaz.findMemberInSystem(memberID);
     if (member != nullptr) // If member is not equal to nullpointer.
@@ -244,7 +246,7 @@ void Librarian::displayBorrowedBooks(int memberID) {
         std::cout << "Member with ID " << memberID << " has not been found." << std::endl;
     }
 }
-
+// Function that calculates the consequence (fine) if the book is overdue beyond the 3-day loan period.
 void Librarian::calcFine(int memberID, Book* initialisingBookReturning ) {
     time_t currentTime = time(nullptr); // The current system time.
 

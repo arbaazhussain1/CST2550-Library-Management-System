@@ -8,7 +8,7 @@ Within this repository it contains the files for CST2550 Coursework 1 created in
 
 Please make sure that the  .csv files & makefile remains in the library management system directory.
 
-Terminal commands.
+# Terminal commands.
 
 make - Compiles the files and makes .exe executables for testing and the library management system.
 
@@ -23,7 +23,7 @@ g++ testCase.cpp Librarian.o Member.o Person.o Book.o -o tests
 
 
 
-makeFile for Windows:
+# makeFile for Windows:
 
 CXXFLAGS = -Wall -Wextra -Wpedantic
 
@@ -53,7 +53,7 @@ clean:
 
 
 
-makefile for macOS - It Runs the code but not the testCase command.
+# makefile for macOS:.
 
 CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++11
 LDFLAGS = -stdlib=libc++

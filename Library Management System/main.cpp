@@ -1,3 +1,6 @@
+// The Library Management System for the main.cpp file.
+
+// Include all the following libraries in order for program to Operate.
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,16 +9,19 @@
 #include <vector>
 #include <regex>
 
+//Include all the header files of each class.
 #include "Person.h"
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
 
+// Function to read and print books from a file
 void readAndPrintBooks() {
     std::string EnterFile;
     std::ifstream inputFile;
     bool fileOpened = false;
 
+    // Keep prompting the user until a valid file is opened
     while (!fileOpened) {
         std::cout << "Please Enter The File Which Comprises Of The Book Database: \n";
         std::cin >> EnterFile;
@@ -37,6 +43,7 @@ void readAndPrintBooks() {
     std::getline(inputFile, line); // Discard the first line (headers)
     line = "";
 
+    // Read each line from the file, parse the information, and create Book objects
     while (std::getline(inputFile, line)) {
         int bookID;
         bool isIssued = false;
@@ -49,6 +56,7 @@ void readAndPrintBooks() {
 
         std::stringstream inputString(line);
 
+        // Extract information from the CSV file
         getline(inputString, temporaryString, ',');
         bookID = std::atoi(temporaryString.c_str());
         getline(inputString, bookName, ',');
@@ -57,10 +65,11 @@ void readAndPrintBooks() {
         getline(inputString, authorLastName, ',');
         getline(inputString, bookType, ',');
 
+        // Create a Book object and add it to the book list
         Book newBook (bookID, bookName, authorFirstName, authorLastName, bookType, isIssued);
 
-        // Use the appropriate vector or container to store books
         getBookList().push_back(newBook);
+
         // Print the book details
         std::cout << "Read book: BookID: " << bookID << ", Book Name: " << bookName << ", Page Count: " << pageCount
                   << ", Author: " << "First Name: " << authorFirstName << ", Last Name: " << authorLastName
@@ -70,10 +79,12 @@ void readAndPrintBooks() {
 
     std::cout << "Books added successfully." << std::endl;
 
+    // Reset file stream to read the file again
     inputFile.clear();
     inputFile.seekg(0, std::ios::beg); // Move back to the beginning of the file
 
     std::cout << "Printing books:\n";
+    // Print all lines from the file
     while (std::getline(inputFile, line)) {
         std::istringstream iss(line);
         std::string token;
@@ -88,7 +99,7 @@ void readAndPrintBooks() {
     inputFile.close();
 }
 
-
+// The main function where the program starts execution
 int main() {
 
     // Printing The Welcome Message to the LIBRARY MANAGEMENT SYSTEM
@@ -122,12 +133,14 @@ int main() {
         std::cout << "Exiting the program.\n";
         return 0;  // End the program
     }
-
+    // Read and print books from a file
     readAndPrintBooks();
+    // Print Librarian information
     Arbaaz.printLibrarianInfo();
 
     int choice;
 
+    // Main program loop
     do {
         // Main menu
         std::cout << "------------------------------------------------------------------------------------------------------------------------\n";
@@ -157,6 +170,7 @@ int main() {
             std::cin >> choice;
         }
 
+        // Perform actions based on user's choice
         switch (choice) {
             case 1:
                 Arbaaz.addMember();
@@ -193,7 +207,7 @@ int main() {
                     std::cout << "Enter Book ID: ";
                     std::cin >> bookID;
                 }
-
+                // Call the returnBook function with user inputs
                 Arbaaz.returnBook(memberID, bookID);
                 break;
             case 4:
@@ -208,7 +222,8 @@ int main() {
                     std::cout << "Enter Member ID: ";
                     std::cin >> memberID;
                 }
-
+                
+                // Call the displayBorrowedBooks function with user input
                 Arbaaz.displayBorrowedBooks(memberID);
                 break;
             case 5:

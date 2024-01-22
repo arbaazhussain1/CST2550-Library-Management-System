@@ -54,7 +54,7 @@ void Librarian::setSalary(int salary) {
     this->salary = salary;
 }
 
-// Other member functions (placeholder implementations)
+// Other Member functions
 void Librarian::addMember() {
 
     std::string newName, newAddress, newEmail;
@@ -85,7 +85,7 @@ void Librarian::addMember() {
         std::getline(std::cin, newAddress);
     }
 
-    // Email validation loop (similar to the original code)
+    // Email validation loop
     do {
         std::cout << "Enter Member's Email:";
         std::cin >> newEmail;
@@ -99,6 +99,7 @@ void Librarian::addMember() {
 
 
     std::cout << "Adding New Member to the System...\n" << std::endl;
+
     // Create a new member and add it to the system
     Member inputMember(newMemberID, newName, newAddress, newEmail);
 

@@ -1,6 +1,8 @@
 #include <sstream>
 #include <string>
 #include <regex>
+#include <ctime>
+#include <cmath>
 
 
 #include "Librarian.h"
@@ -107,15 +109,7 @@ void Librarian::displayMemberDetails(const Member& member) {
     std::cout << "Address: " << member.getAddress() << std::endl;
     std::cout << "Email: " << member.getEmail() << std::endl;
 }
-//// Function to get the book list
-//std::vector<Book>& getBookList() {
-//    return Book::getBookList();
-//}
-//
-//// Function to get the member list
-//std::vector<Member>& getMemberList() {
-//    return Member::Memberlist();
-//}
+
 
 Member* Librarian::findMemberInSystem(int memberID) {
     std::vector<Member>& members = Memberlist();
@@ -148,7 +142,6 @@ void Librarian::issueBook(int memberID, int bookID) {
 
     if (memberBorrowingBook == nullptr || bookToBorrow == nullptr) {
         std::cout << "Member or book not found. Unable to issue the book." << std::endl;
-//        delete bookToBorrow;  // Delete the dynamically allocated book object
         return;
     }
 
@@ -170,24 +163,91 @@ void Librarian::issueBook(int memberID, int bookID) {
 
     bookToBorrow->setBookAsIssued(true);
     bookToBorrow->borrowBook(memberBorrowingBook, dueDate);
+    memberBorrowingBook->setBooksBorrowed(*bookToBorrow);
     std::cout << "Book ID " << bookID << " has been successfully issued to Member ID " << memberID << std::endl;
-//    delete bookToBorrow;  // Delete the dynamically allocated book object
 }
 
 
 void Librarian::returnBook(int memberID, int bookID) {
-    // Placeholder implementation
-    std::cout << "Returning book from member " << memberID << " with book ID " << bookID << std::endl;
+    Member* memberReturningBook = findMemberInSystem(memberID); // Find the member from the parameter given when calling the function.
+    if (!memberReturningBook) {
+        std::cout << "Member with ID " << memberID << " not found." << std::endl;
+        return;
+    }
+
+    Book* bookBeingReturned = findBookInSystem(bookID); // Find the book from the parameter given when calling the function.
+    if (!bookBeingReturned) {
+        std::cout << "Book with ID " << bookID << " not found." << std::endl;
+        return;
+    }
+
+    // Attempt to find the book in the member's list of borrowed books.
+    std::vector<Book>& borrowedBooks = memberReturningBook->getBooksBorrowedReference();
+    // Use auto to find the book within borrowedBooks. 
+    auto bookSearch = std::find_if(borrowedBooks.begin(), borrowedBooks.end(),
+        [bookID](const Book& book) {
+            return book.getBookID() == bookID;
+        }
+    );
+
+    // If the book is found in the member's borrowed books.
+    if (bookSearch != borrowedBooks.end()) {
+        borrowedBooks.erase(bookSearch);// Remove the book from the member's borrowed books.
+        calcFine(memberID, bookBeingReturned); // Calculate the fine for the member if the book is past its due date.
+        bookBeingReturned->returnBook(); // Return the book.
+        bookBeingReturned->setBookAsIssued(false); // set the bookIssued boolean back to false allowing it to be loaned by another member.
+    } else {
+        std::cout << "Member ID " << memberID << " did not borrow book ID " << bookID << std::endl;
+    }
 }
 
 void Librarian::displayBorrowedBooks(int memberID) {
-    // Placeholder implementation
-    std::cout << "Displaying borrowed books for member " << memberID << std::endl;
+    Member* member = Arbaaz.findMemberInSystem(memberID);
+    if (member != nullptr) // If member is not equal to nullpointer.
+    {
+        std::vector<Book> borrowedBooks = member->getBooksBorrowed(); // Create a local vector to store the members books.
+        if (borrowedBooks.empty())
+        {
+            std::cout << "No books currently borrowed by member ID " << memberID << std::endl;
+        }
+        else
+        {
+            std::cout << "\nThe books borrowed by:" << std::endl;
+
+            std::cout << "Member Information:\n";
+            std::cout << "Member ID: " << member->getMemberID() << std::endl;
+            std::cout << "Name: " << member->getName() << std::endl;
+            std::cout << "Address: " << member->getAddress() << std::endl;
+            std::cout << "Email: " << member->getEmail() << std::endl;
+            
+            for (Book book : borrowedBooks)
+            {
+                time_t date = book.getDueDate();
+                std::cout << "\nBook ID: " << book.getBookID() << ", "
+                          << "Book name: " << book.getBookName() << ", "
+                          << "Author full name: " << book.getAuthorFirstName() << " " << book.getAuthorLastName() << ", "
+                          << "Due date for book: " << ctime(&date);
+            }
+        }
+    }
+    else
+    {
+        std::cout << "Member with ID " << memberID << " not found." << std::endl;
+    }
 }
 
-void Librarian::calcFine(int memberID) {
-    // Placeholder implementation
-    std::cout << "Calculating fine for member " << memberID << std::endl;
+void Librarian::calcFine(int memberID, Book* bookBeingReturned) {
+    time_t currentTime = time(nullptr); // The current system time.
+
+    std::cout << "Current time of return: " << ctime(&currentTime) << std::endl;
+    if (currentTime > bookBeingReturned->getDueDate()){
+        double daysLate = difftime(currentTime, bookBeingReturned->getDueDate()) / (60 * 60 * 24);
+        double fine = daysLate * 1;
+
+        std::cout << "The book is " << daysLate << "days late, incuring a fine of " << fine << std::endl;
+        std::cout << "Fine due: £" << floor(fine) << std::endl;
+        std::cout << "MemberID: " << memberID << "returning: " << bookBeingReturned << std::endl;
+    } else {
+        std::cout << "You are within the books due date, so you will not incur a fine" << std::endl;
+    }
 }
-
-

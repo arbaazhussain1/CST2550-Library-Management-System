@@ -20,6 +20,8 @@ public:
     int getMemberID() const;
     const std::vector<Book>& getBooksBorrowed() const;
 
+    std::vector<Book>& getBooksBorrowedReference();
+
     // Mutator methods
     void setMemberID(int newMemberID);
     void setBooksBorrowed(const Book& book);

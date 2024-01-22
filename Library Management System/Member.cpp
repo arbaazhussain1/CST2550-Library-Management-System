@@ -17,6 +17,11 @@ const std::vector<Book>& Member::getBooksBorrowed() const {
     return booksLoaned;
 }
 
+//An accessor method which returns a reference to the books loaned vector of a member stored within the books class.
+std::vector<Book>& Member::getBooksBorrowedReference(){
+    return booksLoaned;
+}
+
 // Mutator methods
 void Member::setMemberID(int newMemberID) {
     memberID = newMemberID;
@@ -31,3 +36,4 @@ std::vector<Member> &Memberlist(){
     static std::vector<Member> memberList;
     return memberList;
 }
+

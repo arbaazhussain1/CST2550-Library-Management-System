@@ -2,7 +2,6 @@
 
 
 // Constructor
-//Book::Book(int bookID, const std::string& bookName, const std::string& authorFirstName, const std::string& authorLastName)
 Book::Book(int bookID, std::string bookName, std::string authorFirstName, std::string authorLastName,std::string bookType, bool isIssued) {
     this->bookID = bookID;
     this->bookName = bookName;
@@ -11,7 +10,6 @@ Book::Book(int bookID, std::string bookName, std::string authorFirstName, std::s
     this->bookType = bookType;
     this->isIssued = isIssued;
 }
-//        : bookID(bookID), bookName(bookName), authorFirstName(authorFirstName), authorLastName(authorLastName), dueDate(0), borrower(nullptr) {}
 
 // Accessor methods
 int Book::getBookID() const {

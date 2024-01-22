@@ -3,7 +3,6 @@
 #include <sstream>
 #include <string>
 #include <limits>
-//#include <cctype>
 #include <vector>
 #include <regex>
 
@@ -11,17 +10,6 @@
 #include "Librarian.h"
 #include "Member.h"
 #include "Book.h"
-
-//std::string filetoCSV = "Library Management System/library_books.csv" ;
-//struct Books {
-//    int bookID;
-//    bool isIssued;
-//    std::string bookName;
-//    std::string pageCount;
-//    std::string authorFirstName;
-//    std::string authorLastName;
-//    std::string bookType;
-//};
 
 void readAndPrintBooks() {
     std::string EnterFile;
@@ -72,7 +60,6 @@ void readAndPrintBooks() {
         Book newBook (bookID, bookName, authorFirstName, authorLastName, bookType, isIssued);
 
         // Use the appropriate vector or container to store books
-        // For example: bookList.push_back(newBook);
         getBookList().push_back(newBook);
         // Print the book details
         std::cout << "Read book: BookID: " << bookID << ", Book Name: " << bookName << ", Page Count: " << pageCount
@@ -139,8 +126,6 @@ int main() {
     readAndPrintBooks();
     Arbaaz.printLibrarianInfo();
 
-//    int memberID;
-//    int bookID;
     int choice;
 
     do {
@@ -157,7 +142,7 @@ int main() {
         std::cout << "\n";
         std::cout << "[4] DISPLAY BORROWED BOOKS\n";
         std::cout << "\n";
-        std::cout << "[5] EXIT NAD CLOSE PROGRAM\n";
+        std::cout << "[5] EXIT AND CLOSE PROGRAM\n";
         std::cout << "\n";
 
         std::cout << "ENTER YOUR CHOICE HERE: ";
@@ -183,13 +168,13 @@ int main() {
                 std::cout << "Enter Member ID: ";
                 std::cin >> memberID;
 
-// Clear the input buffer, including the newline character
+                // Clear the input buffer, including the newline character
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
                 std::cout << "Enter Book ID: ";
                 std::cin >> bookID;
 
-// Call the issueBook function with user inputs
+                // Call the issueBook function with user inputs
                 Arbaaz.issueBook(memberID, bookID);
                 break;
             case 3:

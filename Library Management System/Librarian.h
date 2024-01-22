@@ -18,7 +18,7 @@ private:
     int salary;
 
 public:
-//    // Constructors
+    // Constructors
     Librarian(int staffID, int salary, const std::string name, const std::string address, const std::string email);
 
     // Accessor methods
@@ -34,12 +34,13 @@ public:
     void issueBook(int memberID, int bookID);
     void returnBook(int memberID, int bookID);
     void displayBorrowedBooks(int memberID);
-    void calcFine(int memberID);
+    void calcFine(int memberID, Book* bookBeingReturned);
 
     void printLibrarianInfo();
     void displayMemberDetails(const Member &member);
     Book* findBookInSystem(int bookID);
     Member* findMemberInSystem(int memberID);
+
 };
 
 extern Librarian Arbaaz;

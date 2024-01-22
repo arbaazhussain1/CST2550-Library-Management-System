@@ -182,7 +182,7 @@ void Librarian::returnBook(int memberID, int bookID) {
     }
 
     // Attempt to find the book in the member's list of borrowed books.
-    std::vector<Book>& borrowedBooks = memberReturningBook->getBooksBorrowedReference();
+    std::vector<Book>& borrowedBooks = memberReturningBook->getBooksBorrowedWithSystem();
     // Use auto to find the book within borrowedBooks. 
     auto bookSearch = std::find_if(borrowedBooks.begin(), borrowedBooks.end(),
         [bookID](const Book& book) {

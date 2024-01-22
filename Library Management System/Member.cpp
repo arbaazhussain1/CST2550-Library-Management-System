@@ -1,5 +1,6 @@
+// The Library Management System for the Member.cpp file.
 
-#include "Member.h"
+#include "Member.h" // Include the header file of the Member class.
 
 // Constructor
 Member::Member(int memberID, const std::string& name, const std::string& address, const std::string& email)
@@ -8,21 +9,20 @@ Member::Member(int memberID, const std::string& name, const std::string& address
     setAddress(address);
     setEmail(email);
 }
-// Accessor methods
+// Accessor methods: for Retrieving information.
 int Member::getMemberID() const {
-    return memberID;
+    return memberID; // Return the member's unique identifier.
 }
 
 const std::vector<Book>& Member::getBooksBorrowed() const {
+    return booksLoaned; // Return the list of books borrowed by the member.
+}
+
+std::vector<Book>& Member::getBooksBorrowedWithSystem(){
     return booksLoaned;
 }
 
-//An accessor method which returns a reference to the books loaned vector of a member stored within the books class.
-std::vector<Book>& Member::getBooksBorrowedReference(){
-    return booksLoaned;
-}
-
-// Mutator methods
+// Mutator methods: for to updating information.
 void Member::setMemberID(int newMemberID) {
     memberID = newMemberID;
 }
@@ -32,7 +32,6 @@ void Member::setBooksBorrowed(const Book& book) {
 }
 
 std::vector<Member> &Memberlist(){
-    // A vector to hold all of the member objects that will be added to the system.
     static std::vector<Member> memberList;
     return memberList;
 }

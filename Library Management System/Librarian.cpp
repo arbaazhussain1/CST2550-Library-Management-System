@@ -2,6 +2,7 @@
 
 // The derived class from Person, here the class will inherit/add the members of the Person class directly.
 
+// Include all the following libraries in order for program to Operate.
 #include <sstream>
 #include <string>
 #include <regex>
@@ -9,10 +10,12 @@
 #include <cmath>
 
 
-#include "Librarian.h"
+#include "Librarian.h" // Include the header file of the Librarian class.
 
+// Initialize a static variable to track new member IDs.
 int newMemberID = 1;
 
+// The constructor for the Librarian object.
 Librarian::Librarian(int staffID, int salary, const std::string name, const std::string address, const std::string email) {
     this->staffID = staffID;
     this->salary = salary;
@@ -20,9 +23,10 @@ Librarian::Librarian(int staffID, int salary, const std::string name, const std:
     this->setAddress(address);
     this->setEmail(email);
 }
-
+// Create an instance of the Librarian class named Arbaaz with specific parameters.
 Librarian Arbaaz(1000, 1000, "Arbaaz", "MDX University", "AH2010@live.mdx.ac.uk");
 
+// Displaying Librarian information.
 void Librarian::printLibrarianInfo()  {
     std::cout << "Librarian Information:" << std::endl;
     std::cout << "StaffID: " << getStaffID() << std::endl;
@@ -32,7 +36,7 @@ void Librarian::printLibrarianInfo()  {
     std::cout << "Email: " << getEmail() << std::endl;
 }
 
-// Accessor methods
+// Accessor methods: for Retrieving information.
 int Librarian::getStaffID() const {
     return staffID;
 }
@@ -41,7 +45,7 @@ int Librarian::getSalary() const {
     return salary;
 }
 
-// Mutator methods
+// Mutator methods: for to updating information.
 void Librarian::setStaffID(int staffID) {
     this->staffID = staffID;
 }
@@ -173,20 +177,20 @@ void Librarian::issueBook(int memberID, int bookID) {
 
 
 void Librarian::returnBook(int memberID, int bookID) {
-    Member* memberReturningBook = findMemberInSystem(memberID); // Find the member from the parameter given when calling the function.
-    if (!memberReturningBook) {
+    Member* returningBookByMember = findMemberInSystem(memberID); // Find the member from the parameter given when calling the function.
+    if (!returningBookByMember) {
         std::cout << "Member with ID " << memberID << " has not found." << std::endl;
         return;
     }
 
-    Book* bookBeingReturned = findBookInSystem(bookID); // Find the book from the parameter given when calling the function.
-    if (!bookBeingReturned) {
+    Book* initialisingBookReturning  = findBookInSystem(bookID); // Find the book from the parameter given when calling the function.
+    if (!initialisingBookReturning ) {
         std::cout << "Book with ID " << bookID << " has not found." << std::endl;
         return;
     }
 
     // Attempt to find the book in the member's list of borrowed books.
-    std::vector<Book>& borrowedBooks = memberReturningBook->getBooksBorrowedWithSystem();
+    std::vector<Book>& borrowedBooks = returningBookByMember->getBooksBorrowedWithSystem();
     // Use auto to find the book within borrowedBooks. 
     auto bookSearch = std::find_if(borrowedBooks.begin(), borrowedBooks.end(),
         [bookID](const Book& book) {
@@ -197,9 +201,9 @@ void Librarian::returnBook(int memberID, int bookID) {
     // If the book is found in the member's borrowed books.
     if (bookSearch != borrowedBooks.end()) {
         borrowedBooks.erase(bookSearch);// Remove the book from the member's borrowed books.
-        calcFine(memberID, bookBeingReturned); // Calculate the fine for the member if the book is past its due date.
-        bookBeingReturned->returnBook(); // Return the book.
-        bookBeingReturned->setBookAsIssued(false); // set the bookIssued boolean back to false allowing it to be loaned by another member.
+        calcFine(memberID, initialisingBookReturning ); // Calculate the fine for the member if the book is past its due date.
+        initialisingBookReturning ->returnBook(); // Return the book.
+        initialisingBookReturning ->setBookAsIssued(false); // set the bookIssued boolean back to false allowing it to be loaned by another member.
     } else {
         std::cout << "Member ID " << memberID << " did not borrow book ID " << bookID << std::endl;
     }
@@ -240,17 +244,17 @@ void Librarian::displayBorrowedBooks(int memberID) {
     }
 }
 
-void Librarian::calcFine(int memberID, Book* bookBeingReturned) {
+void Librarian::calcFine(int memberID, Book* initialisingBookReturning ) {
     time_t currentTime = time(nullptr); // The current system time.
 
     std::cout << "The current time of return: " << ctime(&currentTime) << std::endl;
-    if (currentTime > bookBeingReturned->getDueDate()){
-        double daysLate = difftime(currentTime, bookBeingReturned->getDueDate()) / (60 * 60 * 24);
+    if (currentTime > initialisingBookReturning ->getDueDate()){
+        double daysLate = difftime(currentTime, initialisingBookReturning ->getDueDate()) / (60 * 60 * 24);
         double fine = daysLate * 1;
 
         std::cout << "The Book is " << daysLate << "this number of days late, you will be incurring fine amount of  " << fine << std::endl;
         std::cout << "The Fine which is due: £" << floor(fine) << std::endl;
-        std::cout << "MemberID: " << memberID << "Returning: " << bookBeingReturned << std::endl;
+        std::cout << "MemberID: " << memberID << "Returning: " << initialisingBookReturning  << std::endl;
     } else {
         std::cout << "Since the book is within the return deadline, there will be no fine " << std::endl;
     }
